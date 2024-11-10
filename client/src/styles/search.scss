@@ -1,0 +1,150 @@
+.productSearchPage {
+  @include flex(row, flex-start, stretch, 2rem);
+  background-color: $white;
+  padding: 1rem 2rem;
+  width: 100%;
+  overflow-x: hidden;
+  > aside {
+    @include flex(column, flex-start, stretch, 0.3rem);
+    @include cardShadow;
+    min-width: 18rem;
+    padding: 2rem 1.5rem;
+    border-radius: 5px;
+    > h2 {
+      @include heading(2px);
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+    > div {
+      margin: 0.5rem 0;
+      > input,
+      > select {
+        @include inputStyle(100%, 0.7rem, white);
+        border: 1px solid $gray;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  > main {
+    @include flex(column, unset, unset, 0rem);
+    width: 100%;
+    padding: 0, 2rem;
+    > h2 {
+      @include heading;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    > input {
+      @include inputStyle(100%);
+      border-radius: 5px;
+      font-size: 1rem;
+      margin: 1rem 0;
+      border: 1px solid $gray;
+      display: block;
+    }
+    > .searchProductsList {
+      @include flex(row, center, flex-start, 0.5rem, wrap);
+      row-gap: 1rem;
+      min-height: 24rem;
+      padding: 10px;
+      max-height: calc(100% - 10rem);
+      background-color: rgb(241, 240, 240);
+      border-radius: 10px;
+    }
+    > .searchPagination {
+      @include flex;
+      margin-top: 20px;
+      padding: 20px 0;
+      > button {
+        @include button(4.5rem, 0.5rem);
+      }
+    }
+  }
+}
+
+@media screen and (width < 700px) {
+  .productSearchPage {
+    flex-direction: column;
+    padding: 0rem !important;
+    > div {
+      margin: 0.5rem 0;
+      > input,
+      > select {
+        @include inputStyle(100%, 0.7rem, white);
+        border: 1px solid $gray;
+        font-size: 0.75rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .productCard {
+    padding: 8px;
+  }
+  .product-image {
+    max-height: 150px;
+  }
+  .product-name {
+    font-size: 1.1rem;
+  }
+  .product-price {
+    font-size: 0.9rem;
+  }
+  .productSearchPage > main > input {
+    margin: 1rem !important;
+    width: auto !important ;
+  }
+}
+
+@media screen and (width < 400px) {
+  .searchProductsList {
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0.2rem !important;
+    padding-bottom: 6rem !important;
+    > div {
+      margin: 0.5rem 0;
+      > input,
+      > select {
+        @include inputStyle(100%, 0.7rem, white);
+        border: 1px solid $gray;
+        font-size: 0.7rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  .productSearchPage > main > input {
+    margin: 1rem !important;
+    width: auto !important ;
+  }
+  .productCard {
+    padding: 6px;
+  }
+  .product-image {
+    max-height: 120px;
+  }
+  .product-name {
+    font-size: 1rem;
+  }
+  .product-price {
+    font-size: 0.85rem;
+  }
+}
+
+.productPriceWithOfferPrice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  .product-offer-price {
+    font-size: 1rem;
+    font-weight: 800;
+  }
+}
