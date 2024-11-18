@@ -1,18 +1,17 @@
-import morgan from "morgan";
-import express from "express";
+import cors from "cors";
 import { config } from "dotenv";
+import express, { Request, Response } from "express";
+import morgan from "morgan";
 import NodeCache from "node-cache";
-import { Request, Response } from "express";
-import { calculateMonthDifference, connectDB } from "./utils/features.js";
-import usersRoutes from "./routes/users.routes.js";
+import { customErrorMiddleWare } from "./middlewares/errorHandler.js";
+import dataRoutes from "./routes/data.routes.js";
 import orderRoutes from "./routes/orders.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
-import statsRoutes from "./routes/stats.routes.js";
 import productsRoutes from "./routes/products.routes.js";
-import dataRoutes from "./routes/data.routes.js";
-import { customErrorMiddleWare } from "./middlewares/errorHandler.js";
-import cors from "cors";
+import statsRoutes from "./routes/stats.routes.js";
+import usersRoutes from "./routes/users.routes.js";
 import { configureCloudinary } from "./utils/cloudinary.js";
+import { connectDB } from "./utils/features.js";
 
 config({
   path: "./.env",
@@ -30,7 +29,7 @@ export const nodeCash = new NodeCache();
 // Other Middlewares
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://localhost:5173", "https://kooglearden.com", process.env.FRONTEND_ULR as string],
     credentials: true,
   })
 );
