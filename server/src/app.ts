@@ -27,12 +27,20 @@ const dbName = process.env.DB_NAME || "";
 export const nodeCash = new NodeCache();
 
 // Other Middlewares
-app.use(
-  cors({
-    origin: "https://kooglearden.com",
-    credentials: true,
-  })
-);
+const corsOptions: any = {
+  origin: (origin: any, callback: any) => {
+    const allowedOrigins = ["http://localhost:5173", "https://kooglearden.com"];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+// Use the CORS middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 
