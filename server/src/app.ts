@@ -29,7 +29,7 @@ export const nodeCash = new NodeCache();
 // Other Middlewares
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://kooglearden.com", process.env.FRONTEND_ULR as string],
+    origin: "https://kooglearden.com",
     credentials: true,
   })
 );
