@@ -42,6 +42,7 @@ export const getUserFromDb = async (id: string) => {
     const { data }: { data: GetUserResponse } = await axios.get(`${backendServerUrl}/api/v1/users/one/${id}`);
     return data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
